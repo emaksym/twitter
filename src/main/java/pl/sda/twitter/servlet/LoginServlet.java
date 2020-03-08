@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -19,12 +20,14 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         final String login = req.getParameter("login");
         final String password = req.getParameter("password");
+        resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 
         try {
             final TbUser user = userService.getUser(login, password);
+            final HttpSession session = req.getSession();
+            session.setAttribute("user", user);
             resp.sendRedirect("index.jsp");
         } catch (IncorrectLoginOrPasswordException e){
-            resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
             resp.sendRedirect("login.jsp");
         }
 
