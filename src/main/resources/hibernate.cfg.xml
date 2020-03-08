@@ -16,6 +16,7 @@
         <property name = "hibernate.connection.password">Laptop753951</property>
 
         <property name="show_sql">true</property>
+        <mapping class="pl.sda.twitter.persistance.entities.TbUser"/>
 
     </session-factory>
 </hibernate-configuration>
