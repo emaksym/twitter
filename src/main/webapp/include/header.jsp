@@ -18,7 +18,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp">Log in</a>
                 </c:when>
                     <c:otherwise>
-                <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log in</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                     </c:otherwise>
                 </c:choose>
             </li>
@@ -29,3 +29,4 @@
         </form>
     </div>
 </nav>
+<jsp:include page="messages.jsp"/>
