@@ -5,6 +5,7 @@ import pl.sda.twitter.exceptions.IncorrectLoginOrPasswordException;
 import pl.sda.twitter.persistance.entities.TbUser;
 import services.UserService;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,11 @@ import java.util.Collections;
 public class LoginServlet extends HttpServlet {
     private UserService userService = new UserService();
     private final String user = SessionValues.USER.getValue();
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -36,6 +42,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute(messages, Collections.singletonList("Niepoprawne dane logowania"));
             resp.sendRedirect("login.jsp");
         }
+
+
+
 
 //        final PrintWriter writer = res.getWriter();
 //        final String userName = "admin";
